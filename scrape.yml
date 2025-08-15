@@ -2,15 +2,14 @@ name: Scrape Watchers
 
 on:
   schedule:
-    - cron: "5 17 * * *"   # 00:05 เวลาไทย (UTC+7)
+    - cron: "5 17 * * *"   # 00:05 เวลาไทย
   workflow_dispatch: {}
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    # ให้สิทธิ์เขียนไฟล์ลง repo เพื่อ push ไป gh-pages
     permissions:
-      contents: write
+      contents: write    # ให้สิทธิ์ push ไป gh-pages
 
     steps:
       - name: Checkout
@@ -36,13 +35,11 @@ jobs:
           name: data
           path: data.json
 
-      # เตรียมโฟลเดอร์ที่จะ publish
       - name: Prepare publish dir
         run: |
           mkdir -p public
           cp data.json public/
 
-      # เผยแพร่ไป gh-pages
       - name: Publish to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
