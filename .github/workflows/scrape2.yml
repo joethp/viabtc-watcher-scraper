@@ -1,0 +1,51 @@
+name: Scrape Watchers
+
+on:
+  schedule:
+    - cron: "5 17 * * *"   # 00:05 เวลาไทย
+  workflow_dispatch: {}
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write    # ให้สิทธิ์ push ไป gh-pages
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Playwright (Chromium)
+        run: npx playwright install --with-deps chromium
+
+      - name: Run scraper
+        run: node scrape.js
+
+      - name: Upload data.json as artifact (optional)
+        uses: actions/upload-artifact@v4
+        with:
+          name: data
+          path: data.json
+
+      - name: Prepare publish dir
+        run: |
+          mkdir -p public
+          cp data.json public/
+
+      - name: Publish to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./public
+          force_orphan: true
+          user_name: github-actions[bot]
+          user_email: 41898282+github-actions[bot]@users.noreply.github.com
