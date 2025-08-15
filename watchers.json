@@ -2,6 +2,6 @@
   {
     "name": "Farm-A",
     "coin": "LTC",
-    "url": "https://www.viabtc.net/en/observer/dashboard?access_key=6fb7863e8a13730c80cff054fc8c243c"
+    "url": "https://www.viabtc.net/en/observer/worker?access_key=6fb7863e8a13730c80cff054fc8c243c"
   }
 ]
