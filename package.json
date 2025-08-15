@@ -1,0 +1,11 @@
+{
+  "name": "viabtc-github-actions-scraper",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "playwright": "^1.46.0"
+  },
+  "scripts": {
+    "start": "node scrape.js"
+  }
+}

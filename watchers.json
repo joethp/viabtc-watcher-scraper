@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Example-1",
+    "coin": "LTC",
+    "url": "https://www.viabtc.com/en/observer/dashboard?access_key=YOUR_KEY_1&coin=LTC"
+  },
+  {
+    "name": "Example-2",
+    "coin": "DOGE",
+    "url": "https://www.viabtc.com/en/observer/dashboard?access_key=YOUR_KEY_2&coin=DOGE"
+  }
+]
